@@ -1,26 +1,60 @@
+import React, {useEffect, useState} from 'react';
 import './App.css';
-import Message from './Message.js';
+import {MessageInput} from './components/MessageInput';
+import {MessageList} from './components/MessageList';
 
-const ConstComponent = ({constComponentText}) => {
-    return <div>{constComponentText}</div>
-}
+function App() {
+    const [messages, setMessages] = useState([]);
 
-function App(props) {
+    const addHandler = (title) => {
+        const newMessage = {
+            id: Date.now(),
+            title: title,
+            isCommented: false,
+            botComment: "",
+        }
+        setMessages(prevState => [newMessage, ...prevState]);
+    };
 
-    const message = "Текст сообщения для компонента Message, константа, переданная через пропсы";
-    // const message = "";
-    const textForConstComponent = "Этот компонент весь создан через константу";
+    const removeMessage = (id) => {
+        setMessages(prevState =>
+            prevState.filter(message => message.id !== id))
+    };
+
+    const delay = (id) => {
+        setTimeout( createBotComment, 1500, id);
+    }
+
+    const createBotComment = (id) => {
+        setMessages(prevState => {
+            return prevState.map(message => {
+                if(message.id === id) {
+                    message.botComment = "Ваше сообщение принято. Бот-автоответчик";
+                    message.isCommented = true;
+                }
+                return message;
+            })
+        })
+    }
+
+    useEffect(() => {
+           if(messages[0] && messages[0].isCommented === false) {
+               delay(messages[0].id);
+           }
+    }, [messages])
 
     return (
         <div className="App">
-            <Message text={message}/>
-            <ConstComponent constComponentText={textForConstComponent}/>
             <header className="App-header">
-                My First React App
-                <h3>Hello, {props.name}</h3>
+                <MessageInput onAdd={addHandler}/>
+                <MessageList
+                    messages={messages}
+                    onRemove={removeMessage}
+                    />
             </header>
         </div>
     );
 }
+
 
 export default App;

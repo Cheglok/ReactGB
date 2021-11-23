@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-export const MessageForm = ({onAdd}) => {
+export const MessageInput = ({onAdd}) => {
 
     const [title, setTitle] = useState('');
 
@@ -15,8 +15,14 @@ export const MessageForm = ({onAdd}) => {
         }
     };
 
+    const buttonHandler = () => {
+        onAdd(title);
+        setTitle('');
+    }
+
     return (
         <div>
+            <label htmlFor="title">Input your message</label><br/>
             <input
                 onChange={changeHandler}
                 value={title}
@@ -24,7 +30,8 @@ export const MessageForm = ({onAdd}) => {
                 id="title"
                 onKeyPress={keyPressHandler}
                 />
-            <label htmlFor="title">Input your message</label>
+
+            <button onClick={buttonHandler}>Отправить</button>
         </div>
     )
 }
