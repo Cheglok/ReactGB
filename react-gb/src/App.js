@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 import {MessageInput} from './components/MessageInput';
 import {MessageList} from './components/MessageList';
+import {Header} from './components/Header';
 
 function App() {
     const [messages, setMessages] = useState([]);
@@ -10,7 +11,6 @@ function App() {
         const newMessage = {
             id: Date.now(),
             title: title,
-            isCommented: false,
             botComment: "",
         }
         setMessages(prevState => [newMessage, ...prevState]);
@@ -21,7 +21,7 @@ function App() {
             prevState.filter(message => message.id !== id))
     };
 
-    const delay = (id) => {
+    const answerDelay = (id) => {
         setTimeout( createBotComment, 1500, id);
     }
 
@@ -30,7 +30,6 @@ function App() {
             return prevState.map(message => {
                 if(message.id === id) {
                     message.botComment = "Ваше сообщение принято. Бот-автоответчик";
-                    message.isCommented = true;
                 }
                 return message;
             })
@@ -38,20 +37,21 @@ function App() {
     }
 
     useEffect(() => {
-           if(messages[0] && messages[0].isCommented === false) {
-               delay(messages[0].id);
+           if(messages[0] && messages[0].botComment === "") {
+               answerDelay(messages[0].id);
            }
     }, [messages])
 
     return (
         <div className="App">
-            <header className="App-header">
+            <Header/>
+            <div className="App-chat">
                 <MessageInput onAdd={addHandler}/>
                 <MessageList
                     messages={messages}
                     onRemove={removeMessage}
                     />
-            </header>
+            </div>
         </div>
     );
 }

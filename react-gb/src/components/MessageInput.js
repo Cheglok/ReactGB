@@ -21,17 +21,20 @@ export const MessageInput = ({onAdd}) => {
     }
 
     return (
-        <div>
-            <label htmlFor="title">Input your message</label><br/>
-            <input
-                onChange={changeHandler}
-                value={title}
-                type="text"
-                id="title"
-                onKeyPress={keyPressHandler}
+        <div className="App-chat-input-wrapper">
+            <label className="App-chat-input-label" htmlFor="title">Input your message</label><br/>
+            <div>
+                <textarea
+                    autoFocus
+                    className="App-chat-input-input"
+                    onChange={changeHandler}
+                    value={title}
+                    id="title"
+                    onKeyPress={keyPressHandler}
                 />
-
-            <button onClick={buttonHandler}>Отправить</button>
+                <br/>
+                <button onClick={buttonHandler}>Отправить</button>
+            </div>
         </div>
     )
 }

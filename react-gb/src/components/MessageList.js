@@ -8,7 +8,7 @@ export const MessageList = ({
         return (<p>Нет сообщений</p>)
     }
     return (
-        <ul>
+        <ul className="Message-list">
             {messages.map(message => {
                 return (
                     <Message

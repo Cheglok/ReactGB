@@ -3,9 +3,11 @@ export const Message = ({
 }) => {
     return (
         <li>
-            <p>{message.title}</p>
-            <p>{message.botComment}</p>
-            <button onClick={()=>onRemove(message.id)}>delete</button>
+            <p className="Message-text">
+                {message.title}
+                <button onClick={()=>onRemove(message.id)}>delete</button>
+            </p>
+            <p className="Message-comment">{message.botComment}</p>
         </li>
     )
 }
