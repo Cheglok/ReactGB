@@ -7,23 +7,20 @@ import {Header} from './components/Header';
 function App() {
     const [messages, setMessages] = useState([]);
 
-    const addHandler = (title) => {
+    const addMessage = (title) => {
         const newMessage = {
             id: Date.now(),
             title: title,
-            botComment: "",
+            botComment: "", //Здесь будет появляться ответ.
+            // Сколько бы сообщений в секунду не поступило, ответ будет у каждого свой
         }
         setMessages(prevState => [newMessage, ...prevState]);
     };
 
-    const removeMessage = (id) => {
+    const removeMessage = (id) => {                                    //Скопировал из разбора ДЗ Эмиля чтобы понять
         setMessages(prevState =>
             prevState.filter(message => message.id !== id))
     };
-
-    const answerDelay = (id) => {
-        setTimeout( createBotComment, 1500, id);
-    }
 
     const createBotComment = (id) => {
         setMessages(prevState => {
@@ -37,8 +34,8 @@ function App() {
     }
 
     useEffect(() => {
-           if(messages[0] && messages[0].botComment === "") {
-               answerDelay(messages[0].id);
+           if(messages[0] && messages[0].botComment === "") { //Пришлось делать проверку на пустоту массива на первый рендер
+               setTimeout( createBotComment, 1500, messages[0].id);
            }
     }, [messages])
 
@@ -46,7 +43,7 @@ function App() {
         <div className="App">
             <Header/>
             <div className="App-chat">
-                <MessageInput onAdd={addHandler}/>
+                <MessageInput onAdd={addMessage}/>
                 <MessageList
                     messages={messages}
                     onRemove={removeMessage}
