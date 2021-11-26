@@ -3,6 +3,7 @@ import './App.css';
 import {MessageInput} from './components/MessageInput';
 import {MessageList} from './components/MessageList';
 import {Header} from './components/Header';
+import Button from '@mui/material/Button';
 
 function App() {
     const [messages, setMessages] = useState([]);
@@ -42,6 +43,7 @@ function App() {
     return (
         <div className="App">
             <Header/>
+            <Button variant="contained">Hello World</Button>;
             <div className="App-chat">
                 <MessageInput onAdd={addMessage}/>
                 <MessageList
