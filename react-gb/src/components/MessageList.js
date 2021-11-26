@@ -11,11 +11,9 @@ export const MessageList = ({
         <ul className="Message-list">
             {messages.map(message => {
                 return (
-                    <Message
+                    <Message key={message.id}
                         message={message}
                         onRemove={onRemove}
-                        key={message.id}
-                        botComment = {message.botComment}
                     />
                 )
             })}
