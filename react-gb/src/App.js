@@ -4,7 +4,25 @@ import {MessageList} from './components/MessageList';
 import {MessageForm} from './components/MessageForm';
 import Container from "@mui/material/Container";
 import {ChatList} from "./components/ChatsList";
-import Box from "@mui/material/Box";
+
+const chats = [
+    {
+        name: "Lexy",
+        id: 1
+    },
+    {
+        name: "Riley",
+        id: 2
+    },
+    {
+        name: "Dakota",
+        id: 3
+    },
+    {
+        name: "Holly",
+        id: 4
+    },
+];
 
 function App() {
     const [messages, setMessages] = useState([]);
@@ -18,25 +36,6 @@ function App() {
         }
         setMessages(prevState => [newMessage, ...prevState]);
     };
-
-    const chats = [
-        {
-            name: "Lexy",
-            id: 1
-        },
-        {
-            name: "Riley",
-            id: 2
-        },
-        {
-            name: "Dakota",
-            id: 3
-        },
-        {
-            name: "Holly",
-            id: 4
-        },
-    ];
 
     const createBotComment = (id) => {
         setMessages(prevState => {
@@ -71,22 +70,18 @@ function App() {
         setTitle('');
     }
 
-
-
     return (
-        <div className="App">
-            <Box sx={{ display: 'flex' }}>
-                    <ChatList chats={chats}/>
-                <Container maxWidth={"md"}>
-                    <MessageForm
-                        title={title}
-                        changeHandler={changeHandler}
-                        keyPressHandler={keyPressHandler}
-                        buttonHandler={buttonHandler}
-                    />
-                    <MessageList messages={messages}/>
-                </Container>
-            </Box>
+        <div className="App" style={{display: 'flex'}}>
+            <ChatList chats={chats}/>
+            <Container maxWidth={"md"}>
+                <MessageForm
+                    title={title}
+                    changeHandler={changeHandler}
+                    keyPressHandler={keyPressHandler}
+                    buttonHandler={buttonHandler}
+                />
+                <MessageList messages={messages}/>
+            </Container>
         </div>
 
     )
