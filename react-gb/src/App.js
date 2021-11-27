@@ -4,6 +4,7 @@ import {MessageList} from './components/MessageList';
 import {MessageForm} from './components/MessageForm';
 import Container from "@mui/material/Container";
 import {ChatList} from "./components/ChatsList";
+import Box from "@mui/material/Box";
 
 function App() {
     const [messages, setMessages] = useState([]);
@@ -70,13 +71,13 @@ function App() {
         setTitle('');
     }
 
+
+
     return (
         <div className="App">
-            <Container maxWidth="md" className="Container">
-                <Container maxWidth="sm">
+            <Box sx={{ display: 'flex' }}>
                     <ChatList chats={chats}/>
-                </Container>
-                <Container maxWidth={"sm"}>
+                <Container maxWidth={"md"}>
                     <MessageForm
                         title={title}
                         changeHandler={changeHandler}
@@ -85,7 +86,7 @@ function App() {
                     />
                     <MessageList messages={messages}/>
                 </Container>
-            </Container>
+            </Box>
         </div>
 
     )

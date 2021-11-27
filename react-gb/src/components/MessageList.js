@@ -1,10 +1,10 @@
 import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import InboxIcon from "@mui/icons-material/Inbox";
 import ListItemText from "@mui/material/ListItemText";
 import List from "@mui/material/List";
 import React from "react";
+import Box from "@mui/material/Box";
 
 export const MessageList = ({
     messages,
@@ -17,13 +17,13 @@ export const MessageList = ({
             {messages.map(message => {
                         return (
                 <ListItem disablePadding key={message.id}>
-                    <ListItemButton>
                         <ListItemIcon>
                             <InboxIcon />
                         </ListItemIcon>
-                        <ListItemText primary={message.title} />
-                        <ListItemText primary={message.botComment} />
-                    </ListItemButton>
+                        <Box sx={{ flexDirection: 'column' }}>
+                            <ListItemText primary={message.title} />
+                            <ListItemText primary={message.botComment} />
+                        </Box>
                 </ListItem>
                         )
                     })}

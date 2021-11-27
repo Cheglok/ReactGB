@@ -7,7 +7,6 @@ import List from "@mui/material/List";
 import React from "react";
 
 export const ChatList = ({chats}) => {
-    console.log(chats)
     return (
         <List>
             {chats.map(chat => {
