@@ -7,11 +7,12 @@ import React from "react";
 import Box from "@mui/material/Box";
 
 export const MessageList = ({
-    messages,
+    messages, theme
 }) => {
-    if (!messages.length) {
-        return (<p>Нет сообщений</p>)
-    }
+    // if (!messages.length) {
+    //     return (<p>Нет сообщений</p>)
+    // }
+
     return (
         <List>
             {messages.map(message => {
@@ -28,15 +29,5 @@ export const MessageList = ({
                         )
                     })}
         </List>
-        // <ul className="Message-list">
-        //     {messages.map(message => {
-        //         return (
-        //             <Message key={message.id}
-        //                 message={message}
-        //                 onRemove={onRemove}
-        //             />
-        //         )
-        //     })}
-        // </ul>
     )
 }

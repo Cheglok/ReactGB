@@ -4,6 +4,43 @@ import {MessageList} from './components/MessageList';
 import {MessageForm} from './components/MessageForm';
 import Container from "@mui/material/Container";
 import {ChatList} from "./components/ChatsList";
+import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
+import {useTheme} from "@mui/material";
+
+const theme = createTheme({
+    palette: {
+        type: 'light',
+        primary: {
+            main: '#b263c7',
+            light: '#0d1c73',
+            dark: '#611575',
+        },
+        secondary: {
+            main: '#f50057',
+            light: '#cb2661',
+            dark: '#9e043a',
+        },
+        text: {
+            disabled: 'rgba(88,54,54,0.38)',
+            primary: '#11114e',
+        },
+        background: {
+            default: '#d2d296',
+        },
+        warning: {
+            main: '#f59406',
+            light: '#f1aa42',
+            dark: '#925a09',
+        },
+        info: {
+            main: '#178dea',
+            light: '#278ee0',
+            dark: '#0f5287',
+            contrastText: '#ecdede',
+        },
+    },
+});
+
 
 const chats = [
     {
@@ -71,6 +108,7 @@ function App() {
     }
 
     return (
+        <ThemeProvider theme={theme}>
         <div className="App" style={{display: 'flex'}}>
             <ChatList chats={chats}/>
             <Container maxWidth={"md"}>
@@ -80,10 +118,10 @@ function App() {
                     keyPressHandler={keyPressHandler}
                     buttonHandler={buttonHandler}
                 />
-                <MessageList messages={messages}/>
+                <MessageList messages={messages} theme={theme}/>
             </Container>
         </div>
-
+        </ThemeProvider>
     )
 }
 
