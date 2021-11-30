@@ -1,8 +1,28 @@
-import {Chats} from "./components/Chats";
+import {ChatsList} from "./components/ChatsList";
 import * as React from "react";
 import { Routes, Route, Link, Outlet } from "react-router-dom";
 import './App.css';
+import Chat from "./components/Chat";
 
+
+const chats = [
+    {
+        name: "Lexy",
+        id: 1
+    },
+    {
+        name: "Riley",
+        id: 2
+    },
+    {
+        name: "Dakota",
+        id: 3
+    },
+    {
+        name: "Holly",
+        id: 4
+    },
+];
 
 function Home() {
     return (
@@ -54,7 +74,18 @@ function App() {
                 <Route path="/" element={<Home />}>
                     <Route path="" element={<Info />}/>
                     <Route path="profile" element={<Profile />} />
-                    <Route path="chats" element={<Chats />} />
+                    <Route path="chats" element={<ChatsList chats={chats}/>} >
+                        <Route path="" element={<h2>Выберите чат</h2>}/>
+                        <Route path=":chatId" element={<Chat/>}/>
+                    </Route>
+                    <Route
+                        path="*"
+                        element={
+                            <main style={{ padding: "1rem" }}>
+                                <p>There's nothing here!</p>
+                            </main>
+                        }
+                    />
                 </Route>
             </Routes>
         </div>

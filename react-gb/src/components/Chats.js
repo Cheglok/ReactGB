@@ -1,11 +1,8 @@
 import React, {useEffect, useState} from 'react';
-
 import {MessageList} from './MessageList';
 import {MessageForm} from './MessageForm';
 import Container from "@mui/material/Container";
-import {ChatList} from "./ChatsList";
 import { createTheme, ThemeProvider} from '@mui/material/styles';
-import {Link} from "react-router-dom";
 
 const theme = createTheme({
     palette: {
@@ -40,26 +37,6 @@ const theme = createTheme({
         },
     },
 });
-
-
-const chats = [
-    {
-        name: "Lexy",
-        id: 1
-    },
-    {
-        name: "Riley",
-        id: 2
-    },
-    {
-        name: "Dakota",
-        id: 3
-    },
-    {
-        name: "Holly",
-        id: 4
-    },
-];
 
 export function Chats() {
     const [messages, setMessages] = useState([]);
@@ -110,7 +87,6 @@ export function Chats() {
     return (
         <ThemeProvider theme={theme}>
             <div className="Chats">
-                <ChatList chats={chats}/>
                 <Container maxWidth={"md"}>
                     <MessageForm
                         title={title}
