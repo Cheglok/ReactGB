@@ -18,7 +18,6 @@ export const MessageForm = ({title, changeHandler, keyPressHandler, buttonHandle
         <Box sx={{ display: 'flex', justifyContent: 'space-around'}}>
             <TextField
                 autoFocus
-                style={{margin: '20px'}}
                 id="outlined-basic"
                 label="Введите ваше сообщение"
                 variant="filled"
@@ -29,6 +28,7 @@ export const MessageForm = ({title, changeHandler, keyPressHandler, buttonHandle
                     color: theme.palette.secondary.dark,
                     backgroundColor: theme.palette.background.default,
                     borderColor: theme.palette.secondary.main,
+                    margin: '20px'
                 }}
             />
             {/*<input type="text" ref={inputRef}/>*/}

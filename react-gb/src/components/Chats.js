@@ -4,8 +4,8 @@ import {MessageList} from './MessageList';
 import {MessageForm} from './MessageForm';
 import Container from "@mui/material/Container";
 import {ChatList} from "./ChatsList";
-import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
-import {useTheme} from "@mui/material";
+import { createTheme, ThemeProvider} from '@mui/material/styles';
+import {Link} from "react-router-dom";
 
 const theme = createTheme({
     palette: {
@@ -109,7 +109,7 @@ export function Chats() {
 
     return (
         <ThemeProvider theme={theme}>
-            <div className="App" style={{display: 'flex'}}>
+            <div className="Chats">
                 <ChatList chats={chats}/>
                 <Container maxWidth={"md"}>
                     <MessageForm
