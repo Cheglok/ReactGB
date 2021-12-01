@@ -1,11 +1,11 @@
-import {useParams, useNavigate} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import {Chats} from "./Chats";
-import {getChat, removeChat} from "./data";
 
-export default function Chat() {
-    let navigate = useNavigate();
+export default function Chat({chats}) {
     let params = useParams();
-    let chat = getChat(parseInt(params.chatId, 10))
+
+    let chat = chats.find(
+        chat => chat.id === parseInt(params.chatId, 10))
 
     if (!chat) {
         return <h2>Чат не найден</h2>
@@ -13,7 +13,7 @@ export default function Chat() {
     return (
         <>
             <h2>Chat with: {chat.name}</h2>
-            <Chats/>
+            <Chats name={chat.name}/>
         </>);
 
 }

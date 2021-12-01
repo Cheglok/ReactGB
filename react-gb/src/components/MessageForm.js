@@ -1,23 +1,23 @@
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-// import {useEffect, useRef} from "react";
 import Box from "@mui/material/Box";
 import {useTheme} from "@mui/material";
+import {useEffect, useRef} from "react";
 
 
 export const MessageForm = ({title, changeHandler, keyPressHandler, buttonHandler}) => {
-    // const inputRef = useRef(null);       На Input срабатывает, а на TextField нет
-    //
-    // useEffect(() => {
-    //     inputRef.current?.focus();
-    //     console.log(inputRef)
-    // }, [])
+    const inputRef = useRef(null);
+
+    useEffect(() => {
+        inputRef.current?.focus();
+        console.log(inputRef)
+    }, [])
     const theme = useTheme();
 
     return (
         <Box sx={{ display: 'flex', justifyContent: 'space-around'}}>
             <TextField
-                autoFocus
+                inputRef={inputRef}
                 id="outlined-basic"
                 label="Введите ваше сообщение"
                 variant="filled"
@@ -31,7 +31,6 @@ export const MessageForm = ({title, changeHandler, keyPressHandler, buttonHandle
                     margin: '20px'
                 }}
             />
-            {/*<input type="text" ref={inputRef}/>*/}
             <Button
                 variant="outlined"
                 onClick={buttonHandler}

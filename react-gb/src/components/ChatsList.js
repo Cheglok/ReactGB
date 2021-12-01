@@ -1,14 +1,10 @@
 import React, {useEffect, useState} from "react";
-import {NavLink} from "react-router-dom";
-import {getChats, removeChat} from "./data";
+import {NavLink, useNavigate} from "react-router-dom";
 
-export const ChatsList = () => {
-    let chats = getChats();
+export const ChatsList = ({chats, removeChat}) => {
 
-    useEffect(() => {
-        console.log("change");
-        chats = getChats();
-    }, [chats])
+
+    let navigate = useNavigate();
 
     return (
         <div style={{display: "flex"}}>
@@ -35,7 +31,7 @@ export const ChatsList = () => {
                         <button
                             onClick={() => {
                                 removeChat(chat.id);
-                                chats = getChats();
+                                navigate("/chats");
                             }}
                         >
                             Delete

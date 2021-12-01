@@ -2,23 +2,8 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import {useState} from "react";
-import {getChats} from "./data";
 
-export const ManageChats = () => {
-    const chatsInit = getChats();
-    const [chats, setChats] = useState(chatsInit);
-
-    const addChat = (userName) => {
-        const newChat = {
-            id: Date.now(),
-            name: userName
-        }
-        setChats(prevState => [...prevState, newChat]);
-    }
-
-    const removeChat = (id) => {
-        setChats(prevState => prevState.filter(chat => chat.id !== id))
-    }
+export const ManageChats = ({addChat}) => {
 
     const [name, setName] = useState('');
 
@@ -45,19 +30,12 @@ export const ManageChats = () => {
             <h2>Создать новый чат</h2>
             <Box sx={{display: 'flex', justifyContent: 'space-around'}}>
                 <TextField
-                    autoFocus
                     id="outlined-basic"
                     label="Введите имя собеседника"
                     variant="filled"
                     value={name}
                     onChange={changeHandler}
                     onKeyPress={keyPressHandler}
-                    style={{
-                        // color: theme.palette.secondary.dark,
-                        // backgroundColor: theme.palette.background.default,
-                        // borderColor: theme.palette.secondary.main,
-                        margin: '20px'
-                    }}
                 />
                 {/*<input type="text" ref={inputRef}/>*/}
                 <Button

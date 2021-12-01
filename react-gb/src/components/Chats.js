@@ -38,7 +38,7 @@ const theme = createTheme({
     },
 });
 
-export function Chats() {
+export function Chats({name}) {
     const [messages, setMessages] = useState([]);
     const [title, setTitle] = useState('');
 
@@ -55,7 +55,7 @@ export function Chats() {
         setMessages(prevState => {
             return prevState.map(message => {
                 if (message.id === id) {
-                    message.botComment = "Ваше сообщение принято. Бот-автоответчик";
+                    message.botComment = `Ваше сообщение принято пользователем ${name}`;
                 }
                 return message;
             })
