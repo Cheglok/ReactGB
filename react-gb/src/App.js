@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Routes, Route, Link, Outlet, useNavigate} from "react-router-dom";
+import {Routes, Route, Link, Outlet} from "react-router-dom";
 import './App.css';
 import Chat from "./components/Chat";
 import {Messenger} from "./components/Messenger";

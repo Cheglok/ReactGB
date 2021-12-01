@@ -10,7 +10,6 @@ export const MessageForm = ({title, changeHandler, keyPressHandler, buttonHandle
 
     useEffect(() => {
         inputRef.current?.focus();
-        console.log(inputRef)
     }, [])
     const theme = useTheme();
 

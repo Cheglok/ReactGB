@@ -1,8 +1,7 @@
 import {ChatsList} from "./ChatsList";
-import React, {useState} from "react";
+import React from "react";
 import {Outlet} from "react-router-dom";
 import {ManageChats} from "./ManageChats";
-import {getChats} from "./data";
 
 export const Messenger = ({chats, addChat, removeChat}) => {
 
