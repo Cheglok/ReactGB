@@ -1,4 +1,6 @@
-const chats = [
+import {useState} from "react";
+
+let chatsInit = [
     {
         name: "Jack",
         id: 1
@@ -18,11 +20,22 @@ const chats = [
 ];
 
 export function getChats() {
-    return chats;
+    return chatsInit;
 }
 
 export function getChat(id) {
-    return chats.find(
+    return chatsInit.find(
         chat => chat.id === id
     )
+}
+
+// export function addChat(UserName) {
+//     console.log("run");
+//     const newId = new Date().getMilliseconds();
+//     chats.push({name: UserName, id: newId});
+//     console.log(chats);
+// }
+export function removeChat(id) {
+    chatsInit = chatsInit.filter(chat => chat.id !== id);
+    console.log(chatsInit);
 }

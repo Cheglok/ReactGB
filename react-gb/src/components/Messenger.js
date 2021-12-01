@@ -1,18 +1,14 @@
-import {useState} from "react";
 import {ChatsList} from "./ChatsList";
-import {getChats} from "./data";
+import React, {useState} from "react";
+import {Outlet} from "react-router-dom";
+import {ManageChats} from "./ManageChats";
 
 export const Messenger = () => {
-    const [chats, setChats] = useState(getChats);
-
-    const removeChat = (id) => {
-        setChats(prevState =>
-            prevState.filter(chat => chat.id !== id))
-    };
-
     return (
         <>
-            <ChatsList chats={chats} onRemove={removeChat}/>
+            <ChatsList/>
+            <ManageChats/>
+            <Outlet/>
         </>
     )
 }

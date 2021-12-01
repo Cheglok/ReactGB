@@ -1,7 +1,15 @@
-import React from "react";
-import {NavLink, Outlet} from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import {NavLink} from "react-router-dom";
+import {getChats, removeChat} from "./data";
 
-export const ChatsList = ({chats, onRemove}) => {
+export const ChatsList = () => {
+    let chats = getChats();
+
+    useEffect(() => {
+        console.log("change");
+        chats = getChats();
+    }, [chats])
+
     return (
         <div style={{display: "flex"}}>
             <nav
@@ -24,11 +32,17 @@ export const ChatsList = ({chats, onRemove}) => {
                         >
                             {chat.name}
                         </NavLink>
-                        <button onClick={() => onRemove(chat.id)}>Удалить чат</button>
+                        <button
+                            onClick={() => {
+                                removeChat(chat.id);
+                                chats = getChats();
+                            }}
+                        >
+                            Delete
+                        </button>
                     </React.Fragment>
                 ))}
             </nav>
-            <Outlet/>
         </div>
     );
 }

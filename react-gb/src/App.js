@@ -3,7 +3,6 @@ import { Routes, Route, Link, Outlet } from "react-router-dom";
 import './App.css';
 import Chat from "./components/Chat";
 import {Messenger} from "./components/Messenger";
-import {ManageChats} from "./components/ManageChats";
 
 function Home() {
     return (
@@ -51,7 +50,7 @@ function App() {
                     <Route index element={<Info />}/>
                     <Route path="profile" element={<Profile />} />
                     <Route path="chats" element={<Messenger/>} >
-                        <Route index element={<ManageChats/>}/>
+                        <Route index element={<h2>Чат не выбран</h2>}/>
                         <Route path=":chatId" element={<Chat/>}/>
                     </Route>
                     <Route
