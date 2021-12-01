@@ -1,31 +1,34 @@
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import InboxIcon from "@mui/icons-material/Inbox";
-import ListItemText from "@mui/material/ListItemText";
-import List from "@mui/material/List";
 import React from "react";
-import {Link, Outlet} from "react-router-dom";
+import {NavLink, Outlet} from "react-router-dom";
 
-export const ChatsList = ({chats}) => {
+export const ChatsList = ({chats, onRemove}) => {
     return (
         <div style={{display: "flex"}}>
-            <List>
+            <nav
+                style={{
+                    borderRight: "solid 1px",
+                    padding: "1rem"
+                }}
+            >
                 {chats.map(chat => (
-                    <ListItem disablePadding key={chat.id}>
-                        <Link to={`/chats/${chat.id}`}>
-                            <ListItemButton>
-                                <ListItemIcon>
-                                    <InboxIcon/>
-                                </ListItemIcon>
-                                <ListItemText primary={chat.name}/>
-                            </ListItemButton>
-                        </Link>
-                    </ListItem>
+                    <React.Fragment key={chat.id}>
+                        <NavLink
+                            style={({isActive}) => {
+                                return {
+                                    display: "block",
+                                    margin: "1rem 0",
+                                    color: isActive ? "red" : ""
+                                };
+                            }}
+                            to={`/chats/${chat.id}`}
+                        >
+                            {chat.name}
+                        </NavLink>
+                        <button onClick={() => onRemove(chat.id)}>Удалить чат</button>
+                    </React.Fragment>
                 ))}
-            </List>
+            </nav>
             <Outlet/>
         </div>
-
-    )
+    );
 }

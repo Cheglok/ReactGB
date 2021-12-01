@@ -1,28 +1,9 @@
-import {ChatsList} from "./components/ChatsList";
 import * as React from "react";
 import { Routes, Route, Link, Outlet } from "react-router-dom";
 import './App.css';
 import Chat from "./components/Chat";
-
-
-const chats = [
-    {
-        name: "Lexy",
-        id: 1
-    },
-    {
-        name: "Riley",
-        id: 2
-    },
-    {
-        name: "Dakota",
-        id: 3
-    },
-    {
-        name: "Holly",
-        id: 4
-    },
-];
+import {Messenger} from "./components/Messenger";
+import {ManageChats} from "./components/ManageChats";
 
 function Home() {
     return (
@@ -48,12 +29,6 @@ function Profile() {
                     Пока оставляю пустой
                 </p>
             </main>
-            <nav>
-                <ul>
-                    <li><Link to="/">На главную</Link></li>
-                    <li><Link to="/chats">Чаты</Link></li>
-                </ul>
-            </nav>
         </>
     );
 }
@@ -62,6 +37,7 @@ const Info = () => {
     return (
         <main>
             <h2>Главная страница</h2>
+            <p>Какая-то информация о социальной сети</p>
         </main>
     )
 }
@@ -72,10 +48,10 @@ function App() {
         <div className="App">
             <Routes>
                 <Route path="/" element={<Home />}>
-                    <Route path="" element={<Info />}/>
+                    <Route index element={<Info />}/>
                     <Route path="profile" element={<Profile />} />
-                    <Route path="chats" element={<ChatsList chats={chats}/>} >
-                        <Route path="" element={<h2>Выберите чат</h2>}/>
+                    <Route path="chats" element={<Messenger/>} >
+                        <Route index element={<ManageChats/>}/>
                         <Route path=":chatId" element={<Chat/>}/>
                     </Route>
                     <Route
