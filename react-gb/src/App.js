@@ -1,128 +1,96 @@
-import React, {useEffect, useState} from 'react';
+import * as React from "react";
+import {Routes, Route, Link, Outlet} from "react-router-dom";
 import './App.css';
-import {MessageList} from './components/MessageList';
-import {MessageForm} from './components/MessageForm';
-import Container from "@mui/material/Container";
-import {ChatList} from "./components/ChatsList";
-import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
-import {useTheme} from "@mui/material";
-
-const theme = createTheme({
-    palette: {
-        type: 'light',
-        primary: {
-            main: '#b263c7',
-            light: '#0d1c73',
-            dark: '#611575',
-        },
-        secondary: {
-            main: '#f50057',
-            light: '#cb2661',
-            dark: '#9e043a',
-        },
-        text: {
-            disabled: 'rgba(88,54,54,0.38)',
-            primary: '#11114e',
-        },
-        background: {
-            default: '#d2d296',
-        },
-        warning: {
-            main: '#f59406',
-            light: '#f1aa42',
-            dark: '#925a09',
-        },
-        info: {
-            main: '#178dea',
-            light: '#278ee0',
-            dark: '#0f5287',
-            contrastText: '#ecdede',
-        },
-    },
-});
+import Chat from "./components/Chat";
+import {Messenger} from "./components/Messenger";
+import {getChats} from "./components/data";
+import {useState} from "react";
 
 
-const chats = [
-    {
-        name: "Lexy",
-        id: 1
-    },
-    {
-        name: "Riley",
-        id: 2
-    },
-    {
-        name: "Dakota",
-        id: 3
-    },
-    {
-        name: "Holly",
-        id: 4
-    },
-];
+function Home() {
+    return (
+        <>
+            <nav>
+                <ul>
+                    <li><Link to="/">На главную</Link></li>
+                    <li><Link to="/profile">Профиль</Link></li>
+                    <li><Link to="/chats">Чаты</Link></li>
+                </ul>
+            </nav>
+            <Outlet/>
+        </>
+    );
+}
+
+function Profile() {
+    return (
+        <>
+            <main>
+                <h2>Страница профиля</h2>
+                <p>
+                    Пока оставляю пустой
+                </p>
+            </main>
+        </>
+    );
+}
+
+const Info = () => {
+    return (
+        <main>
+            <h2>Главная страница</h2>
+            <p>Какая-то информация о социальной сети</p>
+        </main>
+    )
+}
+
+
+
 
 function App() {
-    const [messages, setMessages] = useState([]);
-    const [title, setTitle] = useState('');
 
-    const addMessage = (title) => {
-        const newMessage = {
+    const chatsInit = getChats();
+    const [chats, setChats] = useState(chatsInit);
+
+    const addChat = (userName) => {
+        const newChat = {
             id: Date.now(),
-            title: title,
-            botComment: "",
+            name: userName
         }
-        setMessages(prevState => [newMessage, ...prevState]);
-    };
-
-    const createBotComment = (id) => {
-        setMessages(prevState => {
-            return prevState.map(message => {
-                if (message.id === id) {
-                    message.botComment = "Ваше сообщение принято. Бот-автоответчик";
-                }
-                return message;
-            })
-        })
+        setChats(prevState => [...prevState, newChat]);
     }
 
-    useEffect(() => {
-        if (messages[0] && messages[0].botComment === "") { //Пришлось делать проверку на пустоту массива на первый рендер
-            setTimeout(createBotComment, 1500, messages[0].id);
-        }
-    }, [messages])
-
-    const changeHandler = (event) => {
-        setTitle(event.target.value);
-    };
-
-    const keyPressHandler = (event) => {
-        if (event.key === 'Enter') {
-            addMessage(title);
-            setTitle('');
-        }
-    };
-
-    const buttonHandler = () => {
-        addMessage(title);
-        setTitle('');
+    const removeChat = (id) => {
+        setChats(prevState => prevState.filter(chat => chat.id !== id))
     }
 
     return (
-        <ThemeProvider theme={theme}>
-        <div className="App" style={{display: 'flex'}}>
-            <ChatList chats={chats}/>
-            <Container maxWidth={"md"}>
-                <MessageForm
-                    title={title}
-                    changeHandler={changeHandler}
-                    keyPressHandler={keyPressHandler}
-                    buttonHandler={buttonHandler}
-                />
-                <MessageList messages={messages} theme={theme}/>
-            </Container>
+        <div className="App">
+            <Routes>
+                <Route path="/" element={<Home />}>
+                    <Route index element={<Info />}/>
+                    <Route path="profile" element={<Profile />} />
+                    <Route path="chats" element={
+                        <Messenger
+                            chats={chats}
+                            addChat={addChat}
+                            removeChat={removeChat}
+                        />} >
+                        <Route index element={<h2>Чат не выбран</h2>}/>
+                        <Route path=":chatId" element={<Chat chats={chats}/>}/>
+                    </Route>
+                    <Route
+                        path="*"
+                        element={
+                            <main style={{ padding: "1rem" }}>
+                                <p>There's nothing here!</p>
+                            </main>
+                        }
+                    />
+                </Route>
+            </Routes>
         </div>
-        </ThemeProvider>
-    )
+    );
 }
 
 export default App;

@@ -1,26 +1,44 @@
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import InboxIcon from "@mui/icons-material/Inbox";
-import ListItemText from "@mui/material/ListItemText";
-import List from "@mui/material/List";
 import React from "react";
+import {NavLink, useNavigate} from "react-router-dom";
 
-export const ChatList = ({chats}) => {
+export const ChatsList = ({chats, removeChat}) => {
+
+
+    let navigate = useNavigate();
+
     return (
-        <List>
-            {chats.map(chat => {
-                return (
-                    <ListItem disablePadding key={chat.id}>
-                        <ListItemButton>
-                            <ListItemIcon>
-                                <InboxIcon />
-                            </ListItemIcon>
-                            <ListItemText primary={chat.name} />
-                        </ListItemButton>
-                    </ListItem>
-                )
-            })}
-        </List>
-    )
+        <div style={{display: "flex"}}>
+            <nav
+                style={{
+                    borderRight: "solid 1px",
+                    padding: "1rem"
+                }}
+            >
+                {chats.map(chat => (
+                    <React.Fragment key={chat.id}>
+                        <NavLink
+                            style={({isActive}) => {
+                                return {
+                                    display: "block",
+                                    margin: "1rem 0",
+                                    color: isActive ? "red" : ""
+                                };
+                            }}
+                            to={`/chats/${chat.id}`}
+                        >
+                            {chat.name}
+                        </NavLink>
+                        <button
+                            onClick={() => {
+                                removeChat(chat.id);
+                                navigate("/chats");
+                            }}
+                        >
+                            Delete
+                        </button>
+                    </React.Fragment>
+                ))}
+            </nav>
+        </div>
+    );
 }
