@@ -2,7 +2,9 @@ import {combineReducers} from 'redux';
 
 import {chatsReducer} from "./chats";
 
-import const rootReducer = combineReducers({
+import {profileReducer} from "./profile";
+
+export const rootReducer = combineReducers({
     chats: chatsReducer,
-    // profile: prifileReducer,
+    profile: profileReducer
 })
