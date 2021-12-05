@@ -1,4 +1,4 @@
-export const chats = [
+export const chatsInitial = [
     {
         id: 0,
         title: 'Тестовый чат',
