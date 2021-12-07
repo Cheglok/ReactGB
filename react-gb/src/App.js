@@ -3,11 +3,15 @@ import {Routes, Route, Link, Outlet} from "react-router-dom";
 import './App.css';
 import Chat from "./components/Chat";
 import {Messenger} from "./components/Messenger";
+// import {MessengerContainer} from "./containers/MessengerContainer";
 import {getChats} from "./components/data";
 import {useState} from "react";
+import {Profile} from "./components/Profile";
+import {useSelector} from "react-redux";
 
 
 function Home() {
+    const { showName, name } = useSelector((state) => state).profile;
     return (
         <>
             <nav>
@@ -16,24 +20,25 @@ function Home() {
                     <li><Link to="/profile">Профиль</Link></li>
                     <li><Link to="/chats">Чаты</Link></li>
                 </ul>
+                <div>Name: {showName && <span>{name}</span>}</div>
             </nav>
             <Outlet/>
         </>
     );
 }
 
-function Profile() {
-    return (
-        <>
-            <main>
-                <h2>Страница профиля</h2>
-                <p>
-                    Пока оставляю пустой
-                </p>
-            </main>
-        </>
-    );
-}
+// function Profile() {
+//     return (
+//         <>
+//             <main>
+//                 <h2>Страница профиля</h2>
+//                 <p>
+//                     Пока оставляю пустой
+//                 </p>
+//             </main>
+//         </>
+//     );
+// }
 
 const Info = () => {
     return (
