@@ -66,7 +66,7 @@ export function Chats({name}) {
         if (messages[0] && messages[0].botComment === "") { //Пришлось делать проверку на пустоту массива на первый рендер
             setTimeout(createBotComment, 1500, messages[0].id);
         }
-    }, [messages])
+    } )
 
     const changeHandler = (event) => {
         setTitle(event.target.value);

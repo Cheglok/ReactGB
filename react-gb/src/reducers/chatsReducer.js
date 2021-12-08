@@ -1,17 +1,23 @@
-import {CHATS_LOAD, CHATS_MESSAGE_SEND} from "../actions/chatActions";
-
-import {chatsInitial} from "../helpers/chatsData";
+import {ADD_CHAT} from "../actions/chatActions";
 
 const initialState = {
-    loading: false,
-    entries: [],
+    // loading: false,
+    // entries: [],
+    chatList: [],
 }
 
 export const chatsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case CHATS_LOAD:
+        case ADD_CHAT:
             return {
-                ...state, entries: chatsInitial,
+                ...state,
+                chatList: [
+                    ...state.chatList,
+                    {
+                        id: `id${state.chatList.length}`,
+                        name: action.name,
+                    },
+                ],
             };
         default:
             return state;

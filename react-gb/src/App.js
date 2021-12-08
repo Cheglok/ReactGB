@@ -3,7 +3,6 @@ import {Routes, Route, Link, Outlet} from "react-router-dom";
 import './App.css';
 import Chat from "./components/Chat";
 import {Messenger} from "./components/Messenger";
-// import {MessengerContainer} from "./containers/MessengerContainer";
 import {getChats} from "./components/data";
 import {useState} from "react";
 import {Profile} from "./components/Profile";
