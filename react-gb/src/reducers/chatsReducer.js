@@ -1,9 +1,10 @@
-import {ADD_CHAT} from "../actions/chatActions";
+import {ADD_CHAT, DELETE_CHAT} from "../actions/chatActions";
+import {getChats} from "../components/data";
 
 const initialState = {
     // loading: false,
     // entries: [],
-    chatList: [],
+    chatList: getChats(),
 }
 
 export const chatsReducer = (state = initialState, action) => {
@@ -19,6 +20,10 @@ export const chatsReducer = (state = initialState, action) => {
                     },
                 ],
             };
+        case DELETE_CHAT: return {
+            ...state,
+            chatList: state.chatList.filter(chat => chat.id !== action.id)
+        }
         default:
             return state;
     }

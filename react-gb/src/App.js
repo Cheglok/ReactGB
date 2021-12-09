@@ -26,19 +26,6 @@ function Home() {
     );
 }
 
-// function Profile() {
-//     return (
-//         <>
-//             <main>
-//                 <h2>Страница профиля</h2>
-//                 <p>
-//                     Пока оставляю пустой
-//                 </p>
-//             </main>
-//         </>
-//     );
-// }
-
 const Info = () => {
     return (
         <main>
@@ -47,9 +34,6 @@ const Info = () => {
         </main>
     )
 }
-
-
-
 
 function App() {
 
