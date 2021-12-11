@@ -1,12 +1,14 @@
 import React, {useState} from "react";
 import {useCallback} from "react";
-import {changeName, toggleShowName} from "../actions/prifileActions";
+import {changeName, toggleShowName} from "../actions/profileActions";
 import {useDispatch, useSelector} from "react-redux";
 
 
 export const Profile = () => {
     const { showName, name } = useSelector((state) => state).profile;
     const dispatch = useDispatch();
+
+    const [value, setValue] = useState('');
 
     const setShowName = useCallback(() => {
         dispatch(toggleShowName);
@@ -16,7 +18,7 @@ export const Profile = () => {
         setValue(e.target.value);
     }, []);
 
-    const [value, setValue] = useState('');
+
 
     const setName = useCallback(() => {
         dispatch(changeName(value));
