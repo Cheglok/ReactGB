@@ -3,7 +3,7 @@ import {Routes, Route} from "react-router-dom";
 import './App.css';
 import {Messenger} from "./components/Messenger";
 import {Profile} from "./components/Profile";
-import {Chat} from "./components/Chat";
+import {ChatOne} from "./components/ChatOne";
 import Main from "./components/Main"
 
 const Info = () => {
@@ -24,7 +24,7 @@ function App() {
                     <Route path="profile" element={<Profile />} />
                     <Route path="chats" element={<Messenger/>} >
                         <Route index element={<h2>Чат не выбран</h2>}/>
-                        <Route path=":chatId" element={<Chat/>}/>
+                        <Route path=":chatId" element={<ChatOne/>}/>
                     </Route>
                     <Route
                         path="*"

@@ -6,7 +6,7 @@ import {useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
 
 
-export function Chat() {
+export function ChatOne() {
 
     let params = useParams();
 

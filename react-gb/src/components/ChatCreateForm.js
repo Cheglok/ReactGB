@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import React, {useState} from "react";
 import {useTheme} from "@mui/material";
 import {useDispatch} from "react-redux";
-import {addChat} from "../actions/chatActions";
+import {addChat} from "../store/actions/chatActions";
 
 export const ChatCreateForm = () => {
     const [name, setName] = useState('');

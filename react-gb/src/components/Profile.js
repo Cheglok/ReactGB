@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {useCallback} from "react";
-import {changeName} from "../actions/profileActions";
+import {changeName} from "../store/actions/profileActions";
 import {useDispatch} from "react-redux";
 
 

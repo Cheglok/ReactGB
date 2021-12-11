@@ -1,5 +1,5 @@
 import {ADD_CHAT, REMOVE_CHAT} from "../actions/chatActions";
-import {getChats} from "../components/data";
+import {getChats} from "../../helpers/data";
 
 const initialState = {
     // loading: false,

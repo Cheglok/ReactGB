@@ -2,7 +2,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {Link, Outlet} from "react-router-dom";
 import * as React from "react";
 import {useCallback} from "react";
-import {toggleShowName} from "../actions/profileActions";
+import {toggleShowName} from "../store/actions/profileActions";
 
 function Main() {
     const { showName, userName } = useSelector((state) => state).profile;

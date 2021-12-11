@@ -1,7 +1,7 @@
 import React from "react";
 import {NavLink, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {removeChat} from "../actions/chatActions";
+import {removeChat} from "../store/actions/chatActions";
 
 export const ChatsList = () => {
     const dispatch = useDispatch();

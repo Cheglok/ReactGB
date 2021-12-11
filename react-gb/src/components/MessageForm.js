@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import {useDispatch, useSelector} from "react-redux";
-import {addMessage} from "../actions/messageAction";
+import {addMessage} from "../store/actions/messageAction";
 import {useParams} from "react-router-dom";
 
 export const MessageForm = () => {
