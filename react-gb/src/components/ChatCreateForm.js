@@ -1,11 +1,19 @@
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import {useState} from "react";
+import React, {useState} from "react";
+import {useTheme} from "@mui/material";
+import {useDispatch} from "react-redux";
+import {addChat} from "../actions/chatActions";
 
-export const ManageChats = ({addChat}) => {
-
+export const ChatCreateForm = () => {
     const [name, setName] = useState('');
+    const theme = useTheme();
+    const dispatch = useDispatch();
+
+    const onAddChat = (userName) => {
+        dispatch(addChat(userName));
+    }
 
     const changeHandler = (event) => {
         setName(event.target.value);
@@ -14,14 +22,14 @@ export const ManageChats = ({addChat}) => {
     const keyPressHandler = (event) => {
         if (event.key === 'Enter') {
             console.log(name);
-            addChat(name);
+            onAddChat(name);
             setName('');
         }
     };
 
     const buttonHandler = () => {
         console.log(name);
-        addChat(name);
+        onAddChat(name);
         setName('');
     }
 
@@ -37,14 +45,13 @@ export const ManageChats = ({addChat}) => {
                     onChange={changeHandler}
                     onKeyPress={keyPressHandler}
                 />
-                {/*<input type="text" ref={inputRef}/>*/}
                 <Button
                     variant="outlined"
                     onClick={buttonHandler}
                     style={{
-                        // color: theme.palette.secondary.dark,
-                        // backgroundColor: theme.palette.primary.main,
-                        // borderColor: theme.palette.secondary.main,
+                        color: theme.palette.secondary.dark,
+                        backgroundColor: theme.palette.primary.main,
+                        borderColor: theme.palette.secondary.main,
                     }}
                 >Создать</Button>
             </Box>

@@ -1,7 +1,7 @@
 // export const CHATS_LOAD = "CHATS_LOAD";
 // export const CHATS_MESSAGE_SEND = "CHATS_MESSAGE_SEND";
 export const ADD_CHAT = "ADD_CHAT";
-export const DELETE_CHAT = "DELETE_CHAT";
+export const REMOVE_CHAT = "REMOVE_CHAT";
 
 // export const chatsLoadAction = () => ({
 //     type: CHATS_LOAD
@@ -17,7 +17,7 @@ export const addChat = (name) => ({
     name,
 });
 
-export const deleteChat = (id) => ({
-    type: DELETE_CHAT,
+export const removeChat = (id) => ({
+    type: REMOVE_CHAT,
     id,
 })

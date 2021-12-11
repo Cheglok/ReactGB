@@ -1,7 +1,8 @@
 export const ADD_MESSAGE = "ADD_MESSAGE";
 
-export const addMessage = (chatId, message) => ({
+export const addMessage = (chatId, text, author) => ({
     type: ADD_MESSAGE,
-    chatId,
-    message,
+    chatId: chatId,
+    text: text,
+    author,
 });

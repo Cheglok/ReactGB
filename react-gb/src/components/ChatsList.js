@@ -1,10 +1,18 @@
 import React from "react";
 import {NavLink, useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {removeChat} from "../actions/chatActions";
 
-export const ChatsList = ({chats, removeChat}) => {
+export const ChatsList = () => {
+    const dispatch = useDispatch();
 
+    const chats = useSelector((state) => state.chats.chatList);
 
     let navigate = useNavigate();
+
+    const onRemoveChat = (id) => {
+        dispatch(removeChat(id));
+    }
 
     return (
         <div style={{display: "flex"}}>
@@ -30,7 +38,7 @@ export const ChatsList = ({chats, removeChat}) => {
                         </NavLink>
                         <button
                             onClick={() => {
-                                removeChat(chat.id);
+                                onRemoveChat(chat.id);
                                 navigate("/chats");
                             }}
                         >

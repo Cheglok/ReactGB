@@ -5,8 +5,8 @@ const initialState = {
     messageList: {},
 };
 
-const chatsReducer = (state = initialState, action) => {
-    switch (action.type) {
+export const messagesReducer = (state = initialState, action) => {
+        switch (action.type) {
         case ADD_MESSAGE: {
             const currentList = state.messageList[action.chatId] || [];
             return {
@@ -14,11 +14,12 @@ const chatsReducer = (state = initialState, action) => {
                 messageList: {
                     ...state.messageList,
                     [action.chatId]: [
-                        ...currentList,
                         {
-                            ...action.message,
+                            text: action.text,
                             id: `${action.chatId}${currentList.length}`,
+                            author: action.author,
                         },
+                        ...currentList,
                     ],
                 },
             };
@@ -27,5 +28,3 @@ const chatsReducer = (state = initialState, action) => {
             return state;
     }
 };
-
-export default chatsReducer;

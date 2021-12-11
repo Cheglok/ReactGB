@@ -4,8 +4,10 @@ import {chatsReducer} from "./chatsReducer";
 
 import {profileReducer} from "./profileReducer";
 
+import {messagesReducer} from "./messagesReduser"
+
 export const rootReducer = combineReducers({
     chats: chatsReducer,
-    profile: profileReducer
+    profile: profileReducer,
+    messages: messagesReducer,
 })
-//lesson7
