@@ -5,7 +5,6 @@ import {Messenger} from "./components/Messenger";
 import {Profile} from "./components/Profile";
 import {ChatOne} from "./components/ChatOne";
 import Main from "./components/Main"
-//lesson 7
 
 const Info = () => {
     return (
