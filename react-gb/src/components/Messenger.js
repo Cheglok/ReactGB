@@ -1,15 +1,15 @@
-import {ChatsList} from "./ChatsList";
 import React from "react";
 import {Outlet} from "react-router-dom";
-import {ManageChats} from "./ManageChats";
+import {ChatCreateForm} from "./ChatCreateForm";
+import {ChatList} from "./ChatList";
 
-export const Messenger = ({chats, addChat, removeChat}) => {
+export const Messenger = () => {
 
     return (
         <div style={{display: "flex"}}>
             <div>
-                <ChatsList chats={chats} removeChat={removeChat}/>
-                <ManageChats addChat={addChat}/>
+                <ChatList/>
+                <ChatCreateForm/>
             </div>
             <Outlet/>
         </div>
