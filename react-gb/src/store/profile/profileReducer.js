@@ -1,4 +1,4 @@
-import {SHOW_NAME, CHANGE_NAME} from "../actions/profileActions"
+import {SHOW_NAME, CHANGE_NAME} from "./profileActions"
 
 const initialState = {
     showName: true,

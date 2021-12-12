@@ -1,60 +1,69 @@
-import Box from "@mui/material/Box";
+import React, {useState} from "react";
+import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import React, {useState} from "react";
-import {useTheme} from "@mui/material";
+import Dialog from "@mui/material/Dialog";
+import {addChat} from "../store/chat/chatActions";
 import {useDispatch} from "react-redux";
-import {addChat} from "../store/actions/chatActions";
+import {useTheme} from "@mui/material";
 
 export const ChatCreateForm = () => {
-    const [name, setName] = useState('');
     const theme = useTheme();
     const dispatch = useDispatch();
 
-    const onAddChat = (userName) => {
-        dispatch(addChat(userName));
+    const [visible, setVisible] = useState(false);
+    const [newChatName, setNewChatName] = useState("");
+
+    const handleChange = (e) => setNewChatName(e.target.value);
+
+    const handleClose = () => setVisible(false);
+    const handleOpen = () => {
+        setVisible(true);
+        console.log(111)
     }
 
-    const changeHandler = (event) => {
-        setName(event.target.value);
+    const onAddChat = () => {
+        dispatch(addChat(newChatName));
+        setNewChatName("");
+        handleClose();
     };
 
     const keyPressHandler = (event) => {
         if (event.key === 'Enter') {
-            console.log(name);
-            onAddChat(name);
-            setName('');
+            onAddChat();
         }
     };
 
-    const buttonHandler = () => {
-        console.log(name);
-        onAddChat(name);
-        setName('');
-    }
-
     return (
-        <>
-            <h2>Создать новый чат</h2>
-            <Box sx={{display: 'flex', justifyContent: 'space-around'}}>
-                <TextField
-                    id="outlined-basic"
-                    label="Введите имя собеседника"
-                    variant="filled"
-                    value={name}
-                    onChange={changeHandler}
-                    onKeyPress={keyPressHandler}
-                />
-                <Button
-                    variant="outlined"
-                    onClick={buttonHandler}
-                    style={{
+        <div>
+            <button
+                className="add-chat"
+                onClick={handleOpen}
+                style={{
                         color: theme.palette.secondary.dark,
                         backgroundColor: theme.palette.primary.main,
                         borderColor: theme.palette.secondary.main,
                     }}
-                >Создать</Button>
-            </Box>
-        </>
+            >
+                Add Chat
+            </button>
+            <Dialog open={visible} onClose={handleClose}>
+                <DialogTitle>Please enter a name for new chat</DialogTitle>
+                <TextField
+                    value={newChatName}
+                    onChange={handleChange}
+                    onKeyPress={keyPressHandler}/>
+                <Button
+                    onClick={onAddChat}
+                    disabled={!newChatName}
+                    style={{
+                        color: theme.palette.secondary.dark,
+                        backgroundColor: theme.palette.primary.main,
+                        borderColor: theme.palette.secondary.main,}}
+                >
+                    Submit
+                </Button>
+            </Dialog>
+        </div>
     )
 }

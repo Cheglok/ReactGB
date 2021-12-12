@@ -4,8 +4,11 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import {useDispatch, useSelector} from "react-redux";
-import {addMessage} from "../store/actions/messageAction";
+import {addMessage} from "../store/message/messageAction";
 import {useParams} from "react-router-dom";
+import {getMessagesList} from "../store/message/messageSelector";
+import {getProfile} from "../store/profile/profileSelector";
+import shallowEqual from "react-redux/lib/utils/shallowEqual";
 
 export const MessageForm = () => {
     const dispatch = useDispatch();
@@ -13,10 +16,10 @@ export const MessageForm = () => {
     const theme = useTheme();
 
     let chatId = parseInt(useParams().chatId, 10);
-    const messages = useSelector((state) => state.messages.messageList);
+    const messages = useSelector(getMessagesList);
     const thisChat = messages[chatId];
 
-    let { showName, userName } = useSelector((state) => state.profile);
+    let { showName, userName } = useSelector(getProfile, shallowEqual);
     userName = showName? userName : "Anonymous";
 
     const [text, setText] = useState('');

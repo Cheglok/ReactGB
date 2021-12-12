@@ -1,18 +1,19 @@
 import React from 'react';
-import {MessagesList} from './MessagesList';
+import {MessageList} from './MessageList';
 import {MessageForm} from './MessageForm';
 import Container from "@mui/material/Container";
 import {useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
+import {getChat, getChatList} from "../store/chat/chatSelector";
+import shallowEqual from "react-redux/lib/utils/shallowEqual";
 
 
 export function ChatOne() {
 
-    let params = useParams();
+    const params = useParams();
+    const chatId = parseInt(params.chatId, 10);
 
-    const chats = useSelector((state) => state.chats.chatList);
-    let chat = chats.find(
-        chat => chat.id === parseInt(params.chatId, 10));
+    const chat = useSelector(getChat(chatId), shallowEqual);
 
     if (!chat) {
         return <h2>Чат не найден</h2>
@@ -23,7 +24,7 @@ export function ChatOne() {
             <div className="Chats">
                 <Container maxWidth={"md"}>
                     <MessageForm/>
-                    <MessagesList/>
+                    <MessageList/>
                 </Container>
             </div>
         </>

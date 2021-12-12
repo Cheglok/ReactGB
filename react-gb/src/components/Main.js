@@ -2,15 +2,18 @@ import {useDispatch, useSelector} from "react-redux";
 import {Link, Outlet} from "react-router-dom";
 import * as React from "react";
 import {useCallback} from "react";
-import {toggleShowName} from "../store/actions/profileActions";
+import {toggleShowName} from "../store/profile/profileActions";
+import {getProfile} from "../store/profile/profileSelector";
+import shallowEqual from "react-redux/lib/utils/shallowEqual";
 
 function Main() {
-    const { showName, userName } = useSelector((state) => state).profile;
+    const { showName, userName } = useSelector(getProfile, shallowEqual);
     const dispatch = useDispatch();
 
     const setShowName = useCallback(() => {
         dispatch(toggleShowName);
     }, [dispatch]);
+
     return (
         <>
             <nav>

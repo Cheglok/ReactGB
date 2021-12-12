@@ -5,13 +5,14 @@ import ListItemText from "@mui/material/ListItemText";
 import List from "@mui/material/List";
 import React from "react";
 import Box from "@mui/material/Box";
-import {useSelector} from "react-redux";
+import {shallowEqual, useSelector} from "react-redux";
 import {useTheme} from "@mui/material";
 import {useParams} from "react-router-dom";
+import {getMessagesList} from "../store/message/messageSelector";
 
-export const MessagesList = () => {
+export const MessageList = () => {
     let id = parseInt(useParams().chatId, 10);
-    const messages = useSelector((state) => state.messages.messageList);
+    const messages = useSelector(getMessagesList, shallowEqual);
 
     const thisChat = messages[id];
     const theme = useTheme();

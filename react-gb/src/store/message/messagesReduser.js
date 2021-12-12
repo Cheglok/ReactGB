@@ -1,4 +1,4 @@
-import {ADD_MESSAGE} from "../actions/messageAction";
+import {ADD_MESSAGE} from "./messageAction";
 
 const initialState = {
     // to be stored like this {[chatId]: [{id, text, author}]}

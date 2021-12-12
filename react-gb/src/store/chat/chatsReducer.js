@@ -1,9 +1,7 @@
-import {ADD_CHAT, REMOVE_CHAT} from "../actions/chatActions";
+import {ADD_CHAT, REMOVE_CHAT} from "./chatActions";
 import {getChats} from "../../helpers/data";
 
 const initialState = {
-    // loading: false,
-    // entries: [],
     chatList: getChats(),
 }
 
@@ -15,8 +13,8 @@ export const chatsReducer = (state = initialState, action) => {
                 chatList: [
                     ...state.chatList,
                     {
-                        id: `id${state.chatList.length}`,
                         name: action.name,
+                        id: state.chatList.length,
                     },
                 ],
             };
