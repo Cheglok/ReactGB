@@ -1,19 +1,19 @@
 let chatsInit = [
     {
         name: "Jack",
-        id: 0
-    },
-    {
-        name: "Jill",
         id: 1
     },
     {
-        name: "Hijo",
+        name: "Jill",
         id: 2
     },
     {
-        name: "Hija",
+        name: "Hijo",
         id: 3
+    },
+    {
+        name: "Hija",
+        id: 4
     },
 ];
 

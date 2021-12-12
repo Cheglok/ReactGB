@@ -1,8 +1,8 @@
-import {SHOW_NAME, CHANGE_NAME} from "./profileActions"
+import {SHOW_NAME, CHANGE_NAME} from "../actions/profileActions"
 
 const initialState = {
-    showName: true,
-    userName: "Misha Cheglok"
+    showName: false,
+    name: "Misha Cheglok"
 }
 
 export const profileReducer = (state = initialState, action) => {
@@ -10,7 +10,7 @@ export const profileReducer = (state = initialState, action) => {
         case SHOW_NAME:
             return {...state, showName: !state.showName}
         case CHANGE_NAME:
-            return {...state, userName: action.payload}
+            return {...state, name: action.payload}
         default:
             return state;
     }

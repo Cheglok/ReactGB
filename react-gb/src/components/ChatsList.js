@@ -1,19 +1,10 @@
 import React from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {removeChat} from "../store/chat/chatActions";
 import {NavLink, useNavigate} from "react-router-dom";
-import {getChatList} from "../store/chat/chatSelector";
-import shallowEqual from "react-redux/lib/utils/shallowEqual";
 
-export const ChatList = () => {
+export const ChatsList = ({chats, removeChat}) => {
+
+
     let navigate = useNavigate();
-    const dispatch = useDispatch();
-
-    const chats = useSelector(getChatList, shallowEqual);
-
-    const onRemoveChat = (id) => {
-        dispatch(removeChat(id));
-    };
 
     return (
         <div style={{display: "flex"}}>
@@ -39,7 +30,7 @@ export const ChatList = () => {
                         </NavLink>
                         <button
                             onClick={() => {
-                                onRemoveChat(chat.id);
+                                removeChat(chat.id);
                                 navigate("/chats");
                             }}
                         >
@@ -50,5 +41,4 @@ export const ChatList = () => {
             </nav>
         </div>
     );
-};
-
+}
