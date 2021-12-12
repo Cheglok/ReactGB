@@ -1,16 +1,16 @@
-import {SHOW_NAME, PROFILE_UPDATE} from "../actions/prifileActions"
+import {SHOW_NAME, CHANGE_NAME} from "./profileActions"
 
 const initialState = {
-    showName: false,
-    name: "Misha Cheglok"
+    showName: true,
+    userName: "Misha Cheglok"
 }
 
 export const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case SHOW_NAME:
             return {...state, showName: !state.showName}
-        case PROFILE_UPDATE:
-            return {...state, entries: action.payload}
+        case CHANGE_NAME:
+            return {...state, userName: action.payload}
         default:
             return state;
     }

@@ -1,44 +1,10 @@
 import * as React from "react";
-import {Routes, Route, Link, Outlet} from "react-router-dom";
+import {Routes, Route} from "react-router-dom";
 import './App.css';
-import Chat from "./components/Chat";
 import {Messenger} from "./components/Messenger";
-// import {MessengerContainer} from "./containers/MessengerContainer";
-import {getChats} from "./components/data";
-import {useState} from "react";
 import {Profile} from "./components/Profile";
-import {useSelector} from "react-redux";
-
-
-function Home() {
-    const { showName, name } = useSelector((state) => state).profile;
-    return (
-        <>
-            <nav>
-                <ul>
-                    <li><Link to="/">На главную</Link></li>
-                    <li><Link to="/profile">Профиль</Link></li>
-                    <li><Link to="/chats">Чаты</Link></li>
-                </ul>
-                <div>Name: {showName && <span>{name}</span>}</div>
-            </nav>
-            <Outlet/>
-        </>
-    );
-}
-
-// function Profile() {
-//     return (
-//         <>
-//             <main>
-//                 <h2>Страница профиля</h2>
-//                 <p>
-//                     Пока оставляю пустой
-//                 </p>
-//             </main>
-//         </>
-//     );
-// }
+import {ChatOne} from "./components/ChatOne";
+import Main from "./components/Main"
 
 const Info = () => {
     return (
@@ -49,40 +15,16 @@ const Info = () => {
     )
 }
 
-
-
-
 function App() {
-
-    const chatsInit = getChats();
-    const [chats, setChats] = useState(chatsInit);
-
-    const addChat = (userName) => {
-        const newChat = {
-            id: Date.now(),
-            name: userName
-        }
-        setChats(prevState => [...prevState, newChat]);
-    }
-
-    const removeChat = (id) => {
-        setChats(prevState => prevState.filter(chat => chat.id !== id))
-    }
-
     return (
         <div className="App">
             <Routes>
-                <Route path="/" element={<Home />}>
-                    <Route index element={<Info />}/>
+                <Route path="/" element={<Main/>}>
+                    <Route index element={<Info/>}/>
                     <Route path="profile" element={<Profile />} />
-                    <Route path="chats" element={
-                        <Messenger
-                            chats={chats}
-                            addChat={addChat}
-                            removeChat={removeChat}
-                        />} >
+                    <Route path="chats" element={<Messenger/>} >
                         <Route index element={<h2>Чат не выбран</h2>}/>
-                        <Route path=":chatId" element={<Chat chats={chats}/>}/>
+                        <Route path=":chatId" element={<ChatOne/>}/>
                     </Route>
                     <Route
                         path="*"
