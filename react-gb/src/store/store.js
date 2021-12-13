@@ -1,13 +1,12 @@
 import {createStore, applyMiddleware} from "redux";
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
-import createSagaMiddleware from 'redux-saga';
-
+import {persistStore, persistReducer} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import {rootReducer} from "./rootReducer";
+import createSagaMiddleware from 'redux-saga';
 // import {loggerMiddleware} from "../middlewares/loggerMiddleware";
 // import {botMiddleware} from "../middlewares/botMiddleware";
-import storage from 'redux-persist/lib/storage';
-import {persistStore, persistReducer} from 'redux-persist';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
     trace: true,
@@ -25,7 +24,7 @@ const persistConfig = {
 export const initStore = () => {
     const initialStore = {};
     const store = createStore(
-        persistReducer(persistConfig, rootReducer,),
+        persistReducer(persistConfig, rootReducer),
          initialStore,
          composeEnhancers(
              applyMiddleware(logger, thunk))
