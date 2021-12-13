@@ -1,4 +1,4 @@
-import React, {useCallback, useRef, useState} from "react";
+import React, {useCallback, useEffect, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
 import shallowEqual from "react-redux/lib/utils/shallowEqual";
@@ -33,10 +33,18 @@ export const MessageFormContainer = () => {
     const buttonHandler = () => {
         onAddMessage(text);
         setText('');
+        inputRef.current?.focus();
     }
+
+    const inputRef = useRef(null);
+
+    useEffect(() => {
+        inputRef.current?.focus();
+    }, [chatId])
 
     return (
         <MessageForm
+            refer = {inputRef}
             text = {text}
             changeHandler = {changeHandler}
             keyPressHandler = {keyPressHandler}

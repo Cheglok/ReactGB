@@ -1,7 +1,7 @@
 import React from "react";
 import {Outlet} from "react-router-dom";
-import {ChatCreateForm} from "./ChatCreateForm";
 import {ChatList} from "./ChatList";
+import {ChatCreateFormContainer} from "./containers/ChatCreateFormContainer";
 
 export const Messenger = () => {
 
@@ -9,7 +9,7 @@ export const Messenger = () => {
         <div style={{display: "flex"}}>
             <div>
                 <ChatList/>
-                <ChatCreateForm/>
+                <ChatCreateFormContainer/>
             </div>
             <Outlet/>
         </div>

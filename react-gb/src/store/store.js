@@ -16,10 +16,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
 const persistConfig = {
     key: 'app',
     storage,
-    blacklist: ['profile']
+    blacklist: ['profile'],
 };
-
-// export const store = createStore(rootReducer, composeEnhancers(applyMiddleware(logger, botMiddleware)));
 
 export const initStore = () => {
     const initialStore = {};

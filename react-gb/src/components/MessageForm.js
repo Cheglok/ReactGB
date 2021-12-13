@@ -1,20 +1,16 @@
-import React, {useEffect, useRef} from "react";
+import React from "react";
 import {useTheme} from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 
-export const MessageForm = ({text, changeHandler, keyPressHandler, buttonHandler}) => {
+export const MessageForm = ({text, changeHandler, keyPressHandler, buttonHandler, refer}) => {
     const theme = useTheme();
-    const inputRef = useRef(null);
 
-    useEffect(() => {
-        inputRef.current?.focus();
-    }, [])
     return (
         <Box sx={{ display: 'flex', justifyContent: 'space-around'}}>
             <TextField
-                inputRef={inputRef}
+                inputRef={refer}
                 id="outlined-basic"
                 label="Введите ваше сообщение"
                 variant="filled"
