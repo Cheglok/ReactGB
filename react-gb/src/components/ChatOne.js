@@ -4,7 +4,7 @@ import {MessageForm} from './MessageForm';
 import Container from "@mui/material/Container";
 import {useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
-import {getChat, getChatList} from "../store/chat/chatSelector";
+import {getChat} from "../store/chat/chatSelector";
 import shallowEqual from "react-redux/lib/utils/shallowEqual";
 
 

@@ -1,4 +1,5 @@
 import {ADD_MESSAGE} from "./messageAction";
+import {nanoid} from "nanoid";
 
 const initialState = {
     // to be stored like this {[chatId]: [{id, text, author}]}
@@ -16,7 +17,7 @@ export const messagesReducer = (state = initialState, action) => {
                     [action.chatId]: [
                         {
                             text: action.text,
-                            id: `${action.chatId}${currentList.length}`,
+                            id: nanoid(),
                             author: action.author,
                         },
                         ...currentList,

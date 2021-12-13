@@ -14,7 +14,7 @@ export const chatsReducer = (state = initialState, action) => {
                     ...state.chatList,
                     {
                         name: action.name,
-                        id: state.chatList.length,
+                        id: action.newChatId,
                     },
                 ],
             };

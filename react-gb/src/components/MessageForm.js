@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import {useDispatch, useSelector} from "react-redux";
-import {addMessage} from "../store/message/messageAction";
+import {addMessage, addMessageWithThunk} from "../store/message/messageAction";
 import {useParams} from "react-router-dom";
 import {getMessagesList} from "../store/message/messageSelector";
 import {getProfile} from "../store/profile/profileSelector";
@@ -16,8 +16,8 @@ export const MessageForm = () => {
     const theme = useTheme();
 
     let chatId = parseInt(useParams().chatId, 10);
-    const messages = useSelector(getMessagesList);
-    const thisChat = messages[chatId];
+    // const messages = useSelector(getMessagesList);
+    // const thisChat = messages[chatId];
 
     let { showName, userName } = useSelector(getProfile, shallowEqual);
     userName = showName? userName : "Anonymous";
@@ -28,7 +28,8 @@ export const MessageForm = () => {
     };
 
     const onAddMessage = useCallback((message, author = userName) => {
-        dispatch(addMessage(chatId, message, author));
+        // dispatch(addMessage(chatId, message, author));
+        dispatch(addMessageWithThunk(chatId, message, author));
     },[chatId, dispatch, userName]);
 
     const keyPressHandler = (event) => {
@@ -44,15 +45,15 @@ export const MessageForm = () => {
         inputRef.current?.focus();
     }
 
-    const createBotComment = useCallback((author) => {
-        onAddMessage(`${author}, ваше сообщение прочитано`, 'bot')
-    }, [onAddMessage]);
-
-    useEffect(() => {
-        if(thisChat && thisChat[0].author !== "bot") {
-            setTimeout(createBotComment, 1500, thisChat[0].author);
-        }
-    }, [thisChat, createBotComment, onAddMessage])
+    // const createBotComment = useCallback((author) => {
+    //     onAddMessage(`${author}, ваше сообщение прочитано`, 'bot')
+    // }, [onAddMessage]);
+    //
+    // useEffect(() => {
+    //     if(thisChat && thisChat[0].author !== "bot") {
+    //         setTimeout(createBotComment, 1500, thisChat[0].author);
+    //     }
+    // }, [thisChat, createBotComment, onAddMessage])
 
     useEffect(() => {
         inputRef.current?.focus();
