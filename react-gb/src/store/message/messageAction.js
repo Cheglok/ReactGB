@@ -15,7 +15,6 @@ export const addMessageWithThunk = (chatId, message, author) => (dispatch, getSt
         if(timers[chatId]) {
             clearTimeout(timers[chatId])
         }
-
         timers[chatId] = setTimeout(() => dispatch(
             addMessage(chatId, `Привет, ${author} это thunk...`, 'bot')
         ), 4000);

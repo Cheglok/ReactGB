@@ -5,7 +5,8 @@ import {Messenger} from "./components/Messenger";
 import {Profile} from "./components/Profile";
 import {ChatOne} from "./components/ChatOne";
 import Main from "./components/Main"
-//Lesson8
+import {GistsList} from "./components/GistList";
+//lesson9
 
 const Info = () => {
     return (
@@ -27,6 +28,7 @@ function App() {
                         <Route index element={<h2>Чат не выбран</h2>}/>
                         <Route path=":chatId" element={<ChatOne/>}/>
                     </Route>
+                    <Route path="gists" element={<GistsList/>} />
                     <Route
                         path="*"
                         element={
