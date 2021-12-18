@@ -13,7 +13,7 @@ export const STATUSES = {
     FAILURE: 3,
 }
 
-export const getGistsDelay = () =>
+export const getLoadDelay = () =>
     ({
         type: GET_GISTS_DELAY,
     });
@@ -61,6 +61,6 @@ export const getAllGists =  () => async (dispatch) => {
         console.log(err)
         dispatch(getGistsFailure(err.message));
     } finally {
-        dispatch(getGistsDelay());
+        dispatch(getLoadDelay());
     }
 };
