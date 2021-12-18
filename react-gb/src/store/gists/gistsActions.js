@@ -3,6 +3,8 @@ export const API_URL_PUBLIC = "https://api.github.com/gists/public";
 export const GET_GISTS_REQUEST = "GET_GISTS_REQUEST";
 export const GET_GISTS_SUCCESS = "GET_GISTS_SUCCESS";
 export const GET_GISTS_FAILURE = "GET_GISTS_FAILURE";
+export const GET_GISTS_END = "GET_GISTS_END";
+export const GET_GISTS_DELAY = "GET_GISTS_DELAY";
 
 export const STATUSES = {
     IDLE: 0,
@@ -11,9 +13,20 @@ export const STATUSES = {
     FAILURE: 3,
 }
 
-export const getGistsRequest = () => ({
+export const getGistsDelay = () =>
+    ({
+        type: GET_GISTS_DELAY,
+    });
+
+export const getGistsRequest = () =>
+    ({
     type: GET_GISTS_REQUEST,
 });
+
+export const getGistsEnd = () =>
+    ({
+        type: GET_GISTS_END,
+    });
 
 const getGistsSuccess = (gists) => ({
     type: GET_GISTS_SUCCESS,
@@ -47,5 +60,7 @@ export const getAllGists =  () => async (dispatch) => {
     } catch (err) {
         console.log(err)
         dispatch(getGistsFailure(err.message));
+    } finally {
+        dispatch(getGistsDelay());
     }
 };

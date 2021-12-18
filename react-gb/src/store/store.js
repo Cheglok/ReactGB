@@ -4,6 +4,7 @@ import thunk from 'redux-thunk';
 import {persistStore, persistReducer} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import {rootReducer} from "./rootReducer";
+import {delayMiddleware} from "../middlewares/delayMiddleware";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
     trace: true,
@@ -22,7 +23,7 @@ export const initStore = () => {
         persistReducer(persistConfig, rootReducer),
          initialStore,
          composeEnhancers(
-             applyMiddleware(logger, thunk))
+             applyMiddleware(logger, delayMiddleware, thunk))
     );
     const persistor = persistStore(store);
     return {store, persistor};
