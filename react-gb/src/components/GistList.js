@@ -1,38 +1,46 @@
-import {useCallback, useEffect, useState} from "react";
-
-export const API_URL_PUBLIC = "https://api.github.com/gists/public";
-export const API_URL_GIST = "https://api.github.com/gists/";
-
+import {useCallback, useEffect} from "react";
+import CircularProgress from "@mui/material/CircularProgress";
+import {useDispatch, useSelector} from "react-redux";
+import {selectGists, selectGistsError, selectGistsLoading} from "../store/gists/gistsSelector";
+import {getAllGists} from "../store/gists/gistsActions";
 
 export const GistsList = () => {
-    const [gists, setGists] = useState([]);
-    const [error, setError] = useState(false);
+    const dispatch = useDispatch();
+    const gists = useSelector(selectGists);
+    const error = useSelector(selectGistsError);
+    const loading = useSelector(selectGistsLoading);
 
     const requestGists = () => {
-        setError(false);
-        fetch(API_URL_PUBLIC)
-            .then((response) => {
-                if (!response.ok){
-                    throw new Error(`Request failed with status ${response.status}`);
-                }
-
-                return response.json();
-            })
-            .then((result) => setGists(result))
-            .catch((err) => {
-                setError(true);
-                console.log(err)
-            });
+        dispatch(getAllGists());
     };
-
     useEffect(() => {
         requestGists();
+// eslint-disable-next-line
     }, []);
 
     const renderGist = useCallback(
-        (gist) => <li key={gist.id}>{gist.description || 'No description'}</li>,
+        (gist) =>
+            <li key={gist.id}>{gist.description || 'No description'}</li>,
         []
     );
 
-    return <ul>{gists.map(renderGist)}</ul>;
-};
+    if (loading) {
+        return <CircularProgress/>;
+    }
+
+    if (error) {
+        return (
+            <>
+                <h3>Error</h3>
+                <button onClick={requestGists}>Retry, 50% success</button>
+            </>
+        );
+    }
+
+    return (
+        <>
+            <button onClick={requestGists}>Retry, 50% mistake</button>
+            <ul>{gists.map(renderGist)}</ul>
+        </>
+    );
+}

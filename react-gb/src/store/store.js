@@ -4,9 +4,6 @@ import thunk from 'redux-thunk';
 import {persistStore, persistReducer} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import {rootReducer} from "./rootReducer";
-// import createSagaMiddleware from 'redux-saga';
-// import {loggerMiddleware} from "../middlewares/loggerMiddleware";
-// import {botMiddleware} from "../middlewares/botMiddleware";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
     trace: true,
@@ -16,7 +13,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
 const persistConfig = {
     key: 'app',
     storage,
-    blacklist: ['profile'],
+    blacklist: ['profile', 'gists'],
 };
 
 export const initStore = () => {
