@@ -22,6 +22,8 @@ function Main() {
                     <li><Link to="/profile">Профиль</Link></li>
                     <li><Link to="/chats">Чаты</Link></li>
                     <li><Link to="/gists">Gists</Link></li>
+                    <li><Link to="/signup">Registration</Link></li>
+                    <li><Link to="/login">Login</Link></li>
                 </ul>
                 <p>Пользователь: {showName && <i>{userName}</i>}</p>
                 <input type="checkbox"

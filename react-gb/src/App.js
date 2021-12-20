@@ -23,6 +23,8 @@ function App() {
             <Routes>
                 <Route path="/" element={<Main/>}>
                     <Route index element={<Info/>}/>
+                    <Route path="singup" element={<Login />} />
+                    <Route path="login" element={<SignUp />} />
                     <Route path="profile" element={<Profile />} />
                     <Route path="chats" element={<Messenger/>} >
                         <Route index element={<h2>Чат не выбран</h2>}/>
