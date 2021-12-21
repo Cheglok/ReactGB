@@ -11,6 +11,7 @@ import {useEffect, useState} from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import {Login} from "./components/Login";
 require('./helpers/firebase');
+//lesson 10
 
 const Info = () => {
     return (
