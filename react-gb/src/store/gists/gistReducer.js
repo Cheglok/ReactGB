@@ -30,7 +30,7 @@ export const gistsReducer = (state = initialState, action) => {
         case GET_GISTS_END:
             return {
                 ...state,
-                loading: false,
+                loading: false
             }
         default:
             return state;

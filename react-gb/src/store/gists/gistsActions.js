@@ -43,7 +43,7 @@ export const getAllGists =  () => async (dispatch) => {
 
     // Имитация ошибки-----------
     dispatch(getGistsFailure(null));
-    if(((new Date).getMilliseconds()) % 2) {
+    if(((new Date()).getMilliseconds()) % 2) {
         dispatch(getGistsFailure('test error'));
     }
     // Имитация ошибки-----------

@@ -1,5 +1,5 @@
 import {createStore, applyMiddleware} from "redux";
-import logger from 'redux-logger';
+// import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 import {persistStore, persistReducer} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
@@ -23,7 +23,7 @@ export const initStore = () => {
         persistReducer(persistConfig, rootReducer),
          initialStore,
          composeEnhancers(
-             applyMiddleware(logger, delayMiddleware, thunk))
+             applyMiddleware(delayMiddleware, thunk))
     );
     const persistor = persistStore(store);
     return {store, persistor};
